@@ -1,9 +1,18 @@
-// import * as functions from "firebase-functions";
+import * as functions from "firebase-functions";
 
 // // Start writing functions
 // // https://firebase.google.com/docs/functions/typescript
 //
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+import { homegraph, verify } from './smarthome';
+
+export const smartHomeSync = functions.https.onRequest((request, response) => {
+    const { jwt } = request.body;
+    verify(jwt).then( payload => {
+        const userid = payload? payload['sub'] : undefined;
+        if (userid){
+            homegraph.
+        }
+    });
+    functions.logger.info("Hello logs!", {structuredData: true});
+  response.send("Hello from Firebase!");
+});

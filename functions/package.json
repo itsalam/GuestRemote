@@ -19,7 +19,6 @@
     "actions-on-google": "^3.0.0",
     "firebase-admin": "^10.0.2",
     "firebase-functions": "^3.18.0",
-    "fs": "^0.0.1-security",
     "googleapis": "^110.0.0"
   },
   "devDependencies": {

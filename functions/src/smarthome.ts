@@ -1,5 +1,5 @@
 import { OAuth2Client, TokenPayload } from 'google-auth-library';
-import { google } from 'googleapis'
+import google from 'googleapis';
 import * as functions from 'firebase-functions';
 
 const CLIENT_ID = '491780931767-oohtjepvj9hk5prqicv3akh154cg16m7.apps.googleusercontent.com;'
