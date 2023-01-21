@@ -4,12 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "npm --prefix ./functions run build && npm --prefix ./frontend run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "firebase-admin": "^11.5.0",
-    "firebase-functions": "^4.1.1"
   }
 }

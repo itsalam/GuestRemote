@@ -21,6 +21,13 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ]
+    ],
+    "predeploy": [
+      "npm --prefix \"$RESOURCE_DIR\"\\.. run build"
+    ],
+    "rewrites": [ {
+      "source": "v1",
+      "function": "app"
+      } ]
   }
 }
