@@ -12,7 +12,17 @@ exports.query = functions.https.onCall(async (data, context) => {
   functions.logger.log("Hi there");
   const payload = await verify(jwt);
   const userid = payload? payload["sub"] : undefined;
+  functions.logger.log("Payload info", {...payload});
   if (userid) {
+    const syncRes = await homegraph.devices
+        .requestSync({requestBody: {agentUserId: userid}})
+        .then((response) => {
+          if (response.status !== 200) {
+            throw new Error("Sync request failed: " + response.statusText);
+          }
+          return homegraph.devices.sync({requestBody: {agentUserId: userid}});
+        });
+    functions.logger.log(`Sync request info: ${syncRes}`);
     const res = await homegraph.devices.query(
         {requestBody: {agentUserId: userid, inputs: []}});
     functions.logger.log(`res: ${res}`);

@@ -1,8 +1,13 @@
 import {google, Auth} from "googleapis";
 import * as functions from "firebase-functions";
 
-export const homegraph = google.homegraph("v1");
-const authClient = new Auth.OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+const authClient = new Auth.OAuth2Client(
+    process.env.GOOGLE_CLIENT_ID,
+    process.env.GOOGLE_CLIENT_SECRET);
+
+const SCOPES = ["https://www.googleapis.com/auth/homegraph"];
+
+export const homegraph = google.homegraph({version: "v1", auth: authClient});
 
 /**
  * Verifies the given JWT Token for googleApis
@@ -17,7 +22,7 @@ export async function verify(
     audience: process.env.GOOGLE_CLIENT_ID,
   });
   google.options({auth: authClient});
-  functions.logger.log(`id: ${ticket.getUserId}`);
-  functions.logger.log(`payload: ${ticket.getPayload}`);
+  functions.logger.log(`id: ${ticket.getUserId()}`);
+  functions.logger.log(`payload: ${ticket.getPayload()}`);
   return ticket.getPayload();
 }

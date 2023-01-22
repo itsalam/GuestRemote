@@ -13,7 +13,7 @@ export function QueryButton() {
 
   // eslint-disable-next-line max-len
   const onClick: React.MouseEventHandler<HTMLButtonElement> = () => callQueryFunction({jwt: JWTToken})
-      .then((res) => {
+      .then((res: {data: any}) => {
         const {data} = res;
         console.log({res, data});
       });
